@@ -1,5 +1,30 @@
 <RCC>
     <qresource prefix="/image">
         <file>ui/splash.png</file>
+        <file>util/image/add_bottom.png</file>
+        <file>util/image/add_left.png</file>
+        <file>util/image/add_right.png</file>
+        <file>util/image/add_top.png</file>
+        <file>util/image/btn_close.png</file>
+        <file>util/image/btn_ok.png</file>
+        <file>util/image/checkbox_checked.png</file>
+        <file>util/image/checkbox_unchecked.png</file>
+        <file>util/image/Font Awesome Cheatsheet.png</file>
+        <file>util/image/fontawesome-webfont.ttf</file>
+        <file>util/image/msg_error.png</file>
+        <file>util/image/msg_info.png</file>
+        <file>util/image/msg_question.png</file>
+        <file>util/image/qt_zh_CN.qm</file>
+        <file>util/image/radio_normal.png</file>
+        <file>util/image/radio_selected.png</file>
+        <file>util/qss/black.css</file>
+        <file>util/qss/blue.css</file>
+        <file>util/qss/brown.css</file>
+        <file>util/qss/darkgray.css</file>
+        <file>util/qss/dev.css</file>
+        <file>util/qss/gray.css</file>
+        <file>util/qss/lightgray.css</file>
+        <file>util/qss/silvery.css</file>
+        <file>ui/logo.png</file>
     </qresource>
 </RCC>

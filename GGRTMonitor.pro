@@ -26,7 +26,13 @@ SOURCES +=\
     Core/logininfo.cpp \
     Core/monitorcallbacki.cpp \
     Views/ggmain.cpp \
-    Core/main.cpp
+    Core/main.cpp \
+    Views/util/jniconhelper.cpp \
+    Views/util/jnmessagebox.cpp \
+    Views/util/jnappconfig.cpp \
+    Views/util/jnhelper.cpp \
+    Views/util/jninputbox.cpp \
+    Util/jnqtlogger.cpp
 
 HEADERS  += \
     generated/GGConfig.h \
@@ -42,11 +48,19 @@ HEADERS  += \
     Core/ggiceevent.h \
     Core/logininfo.h \
     Core/monitorcallbacki.h \
-    Views/ggmain.h
+    Views/ggmain.h \
+    Views/util/jniconhelper.h \
+    Views/util/jnmessagebox.h \
+    Views/util/jnappconfig.h \
+    Views/util/jnhelper.h \
+    Views/util/jninputbox.h \
+    Util/jnqtlogger.h
 
 FORMS    += \
     Views/loginview.ui \
-    Views/ggmain.ui
+    Views/ggmain.ui \
+    Views/util/jnmessagebox.ui \
+    Views/util/jninputbox.ui
 
 ##--------------------------Added config
 
@@ -57,7 +71,9 @@ ICE_HOME = $$(ICE_HOME)
 INCLUDEPATH   += .
 INCLUDEPATH   += ./generated
 INCLUDEPATH   += ./Core
+INCLUDEPATH   += ./Util
 INCLUDEPATH   += ./Views
+INCLUDEPATH   += ./Views/util
 
 !equals(ICE_HOME,"/usr"){
     INCLUDEPATH   += $$quote($$ICE_HOME/include)

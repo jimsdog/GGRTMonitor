@@ -4,6 +4,7 @@
 #include <QPixmap>
 #include <QSplashScreen>
 #include <QTimer>
+#include <QMessageLogger>
 
 #include "ggcoordinatori.h"
 #include "loginview.h"
@@ -20,8 +21,11 @@ GGApp::GGApp(int argc, char** argv)
     LoginView* loginView = new LoginView(0);
     _coordinator = new GGCoordinatorI(loginView, argc, argv);
 
+    connect(this, SIGNAL(aboutToQuit()), this, SLOT(shutdown()));
+
     connect(loginView, SIGNAL(login(const LoginInfoPtr&)),
             _coordinator.get(), SLOT(login(const LoginInfoPtr&)));
+    connect(loginView, SIGNAL(exit()), this, SLOT(shutdown()));
 
     //----------
     QPixmap pixmap(":/image/ui/splash.png");
@@ -41,5 +45,5 @@ GGApp::GGApp(int argc, char** argv)
 
 void GGApp::shutdown()
 {
-
+    _coordinator->exit();
 }

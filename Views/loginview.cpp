@@ -5,9 +5,15 @@
 
 LoginView::LoginView(QWidget *parent) :
     QWidget(parent),
+    _info(new LoginInfo()),
     ui(new Ui::LoginView)
 {
     ui->setupUi(this);
+
+    _info->load();
+
+    setWindowTitle(tr("Googol Monitor"));
+    setWindowIcon(QIcon(":/image/ui/logo.png"));
 
     this->ui->userName->installEventFilter(this);
     this->ui->passWord->installEventFilter(this);
@@ -16,6 +22,8 @@ LoginView::LoginView(QWidget *parent) :
     this->ui->pbLogin->setDefault(true);
 
     connect(this->ui->pbLogin, SIGNAL(clicked()), this, SLOT(login()));
+    connect(this->ui->pbExit, SIGNAL(clicked()), this, SLOT(close()));
+    //connect(this->ui->passWord,SIGNAL(returnPressed()),ui->pbLogin,SLOT(setChecked(bool)));
 }
 
 LoginView::~LoginView()
@@ -51,7 +59,8 @@ bool LoginView::eventFilter(QObject* target, QEvent* event)
                 }
                 else if(target == this->ui->passWord)
                 {
-                    this->ui->pbLogin->setFocus();
+                    //this->ui->pbLogin->setFocus();
+                    login();
                 }
                 return true;
             }

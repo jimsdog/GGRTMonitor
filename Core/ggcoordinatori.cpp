@@ -6,6 +6,8 @@
 #include <./generated/GGSmart.h>
 #include <./generated/GGMonitorSession.h>
 
+#include <./Views/util/jnhelper.h>
+
 
 
 using namespace GGSmart;
@@ -54,9 +56,21 @@ void GGCoordinatorI::destroySession(const Ice::Exception&)
 
 void GGCoordinatorI::login(const LoginInfoPtr& info)
 {
+    qDebug("GGCoordinatorI::login begin");
     setState(Connecting);
     _info = info;
     _session = _factory->connect(info->username(), info->password());
+    qInfo("GGCoordinatorI::login end");
+}
+
+void GGCoordinatorI::login()
+{
+    setState(Disconnected);
+}
+
+void GGCoordinatorI::logout()
+{
+    destroySession();
 }
 
 void GGCoordinatorI::setError(const std::string&)
@@ -66,9 +80,20 @@ void GGCoordinatorI::setError(const std::string&)
 
 //-------------------------------------Comm virtual functions
 
-void GGCoordinatorI::setState(Glacier2ClientState)
+void GGCoordinatorI::setState(Glacier2ClientState state)
 {
+    //此处处理ICE状态改变的逻辑
+    _state = state;
+    if(state == Connecting)
+    {
+        QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 
+    }
+    else if(state == Connected)
+    {
+        QApplication::restoreOverrideCursor();
+
+    }
 }
 
 void GGCoordinatorI::exit()
@@ -77,7 +102,7 @@ void GGCoordinatorI::exit()
     _dispatcher->exit();
     Ice::CommunicatorPtr communicator = _session ? _session->communicator() : static_cast<Ice::CommunicatorPtr>(0);
 
-    //logout();
+    logout();
 
     if(communicator)
     {
@@ -99,6 +124,8 @@ void GGCoordinatorI::createdCommunicator(const SessionHelperPtr& session)
 
 void GGCoordinatorI::connected(const SessionHelperPtr& session)
 {
+    qInfo("GGCoordinatorI::connected");
+
     if(_exit)
     {
         return;
@@ -121,10 +148,13 @@ void GGCoordinatorI::connected(const SessionHelperPtr& session)
                     new ConnectAsyncCallback(this),
                     &ConnectAsyncCallback::response, &ConnectAsyncCallback::exception);
         monitor->begin_SetCallback(callback, _id, cb);
+
+        qInfo("GGCoordinatorI begin_SetCallback success");
     }
     catch(const Ice::CommunicatorDestroyedException&)
     {
         // Ignored the application is being shutdown.
+        qInfo("GGCoordinatorI begin_SetCallback faulure");
     }
 }
 

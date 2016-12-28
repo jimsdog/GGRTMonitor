@@ -46,6 +46,8 @@ signals:
 public slots:
 
     virtual void login(const LoginInfoPtr& info);
+    virtual void login();
+    virtual void logout();
     virtual void setError(const std::string&);
 
 private:
