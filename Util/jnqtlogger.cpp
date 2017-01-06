@@ -34,6 +34,7 @@ void JNQTLogger::myMessageOutput(QtMsgType type, const QMessageLogContext &conte
             break;
         case QtFatalMsg:
             typeMsg = QString("Fatal");
+            break;
             //abort();
         }
 

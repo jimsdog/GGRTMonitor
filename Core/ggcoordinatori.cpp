@@ -73,9 +73,9 @@ void GGCoordinatorI::logout()
     destroySession();
 }
 
-void GGCoordinatorI::setError(const std::string&)
+void GGCoordinatorI::setError(const std::string& err)
 {
-
+    qWarning(err.c_str());
 }
 
 //-------------------------------------Comm virtual functions

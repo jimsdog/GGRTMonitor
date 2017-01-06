@@ -16,9 +16,9 @@ using namespace Glacier2;
 
 enum Glacier2ClientState
 {
-    Disconnected,
-    Connecting,
-    Connected,
+    Disconnected,   //断开状态
+    Connecting,     //连接中状态
+    Connected,      //连接成功
     Disconnecting
 };
 
