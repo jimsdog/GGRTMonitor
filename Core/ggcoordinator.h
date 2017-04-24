@@ -1,4 +1,4 @@
-#ifndef GGCOORDINATOR_H
+﻿#ifndef GGCOORDINATOR_H
 #define GGCOORDINATOR_H
 
 #include <QObject>

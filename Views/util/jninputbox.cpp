@@ -1,4 +1,4 @@
-#include "jninputbox.h"
+﻿#include "jninputbox.h"
 #include "ui_jninputbox.h"
 
 #include "jnhelper.h"

@@ -1,4 +1,4 @@
-#ifndef JNAPPCONFIG_H
+﻿#ifndef JNAPPCONFIG_H
 #define JNAPPCONFIG_H
 
 

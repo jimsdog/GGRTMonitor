@@ -1,4 +1,4 @@
-#include "jnmessagebox.h"
+﻿#include "jnmessagebox.h"
 #include "ui_jnmessagebox.h"
 
 #include "jnhelper.h"
@@ -23,14 +23,14 @@ void JNMessageBox::SetMessage(QString msg, int type)
     if (type == 0) {
         ui->labIcoMain->setStyleSheet("border-image: url(:/image/util/image/msg_info.png);");
         ui->btnCancel->setVisible(false);
-        ui->lab_Title->setText("提示");
+        ui->lab_Title->setText(QString::fromLocal8Bit("提示"));
     } else if (type == 1) {
         ui->labIcoMain->setStyleSheet("border-image: url(:/image/util/image/msg_question.png);");
-        ui->lab_Title->setText("询问");
+        ui->lab_Title->setText(QString::fromLocal8Bit("询问"));
     } else if (type == 2) {
         ui->labIcoMain->setStyleSheet("border-image: url(:/image/util/image/msg_error.png);");
         ui->btnCancel->setVisible(false);
-        ui->lab_Title->setText("错误");
+        ui->lab_Title->setText(QString::fromLocal8Bit("错误"));
     }
 
     ui->labInfo->setText(msg);

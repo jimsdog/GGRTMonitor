@@ -32,7 +32,20 @@ SOURCES +=\
     Views/util/jnappconfig.cpp \
     Views/util/jnhelper.cpp \
     Views/util/jninputbox.cpp \
-    Util/jnqtlogger.cpp
+    Util/jnqtlogger.cpp \
+    Thirdparty/JNQTFramework/JUtil.cpp \
+    Thirdparty/JNQTFramework/JToolButton.cpp \
+    Thirdparty/JNQTFramework/JTitleBar.cpp \
+    Thirdparty/JNQTFramework/JCheckAbleButton.cpp \
+    Thirdparty/JNQTFramework/JStateButton.cpp \
+    Thirdparty/JNQTFramework/JFlyWidget.cpp \
+    Thirdparty/JNQTFramework/JBasePushButton.cpp \
+    Thirdparty/JNQTFramework/JBaseDialog.cpp \
+    Thirdparty/JNQTFramework/JTabWidget.cpp \
+    Thirdparty/JNQTFramework/JWigglyWidget.cpp \
+    Thirdparty/JNQTFramework/JShadowLabel.cpp \
+    Thirdparty/JNQTFramework/JNoFocusDelegate.cpp \
+    Thirdparty/JNQTFramework/JNavgationBar.cpp
 
 HEADERS  += \
     generated/GGConfig.h \
@@ -54,7 +67,20 @@ HEADERS  += \
     Views/util/jnappconfig.h \
     Views/util/jnhelper.h \
     Views/util/jninputbox.h \
-    Util/jnqtlogger.h
+    Util/jnqtlogger.h \
+    Thirdparty/JNQTFramework/JUtil.h \
+    Thirdparty/JNQTFramework/JToolButton.h \
+    Thirdparty/JNQTFramework/JTitleBar.h \
+    Thirdparty/JNQTFramework/JCheckAbleButton.h \
+    Thirdparty/JNQTFramework/JStateButton.h \
+    Thirdparty/JNQTFramework/JFlyWidget.h \
+    Thirdparty/JNQTFramework/JBasePushButton.h \
+    Thirdparty/JNQTFramework/JBaseDialog.h \
+    Thirdparty/JNQTFramework/JTabWidget.h \
+    Thirdparty/JNQTFramework/JWigglyWidget.h \
+    Thirdparty/JNQTFramework/JShadowLabel.h \
+    Thirdparty/JNQTFramework/JNoFocusDelegate.h \
+    Thirdparty/JNQTFramework/JNavgationBar.h
 
 FORMS    += \
     Views/loginview.ui \
@@ -99,5 +125,7 @@ win32{
 
 RESOURCES += \
     res/ggres.qrc
+
+DISTFILES +=
 
 
