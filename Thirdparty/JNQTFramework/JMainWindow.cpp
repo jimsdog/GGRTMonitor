@@ -1,27 +1,23 @@
 ﻿/****************************************************************************
 **
-** Copyright (C) 2014 dragondjf
+** Copyright (C) 2017 JIMSDOG
 **
-** QFramer is a frame based on Qt5.3, you will be more efficient with it. 
-** As an Qter, Qt give us a nice coding experience. With user interactive experience(UE) 
-** become more and more important in modern software, deveployers should consider business and UE.
-** So, QFramer is born. QFramer's goal is to be a mature solution 
-** which you only need to be focus on your business but UE for all Qters.
+** JNQTFramework is a frameworke based on Qt5.3, you will be more efficient with it.
 **
-** Version	: 0.2.5.0
-** Author	: dragondjf
-** Website	: https://github.com/dragondjf
-** Project	: https://github.com/dragondjf/QCFramer
-** Blog		: http://my.oschina.net/dragondjf/home/?ft=atme
-** Wiki		: https://github.com/dragondjf/QCFramer/wiki
+** Version	: 0.0.1.0
+** Author	: Jimsdog
+** Website	: https://github.com/jimsdog
+** Project	: https://github.com/jimsdog/GGRTMonitor
+** Blog		: http://www.jimsdog.com
+** Wiki		: https://github.com/jimsdog/GGRTMonitor/wiki
 ** Lincence: LGPL V2
-** QQ: 465398889
-** Email: dragondjf@gmail.com, ding465398889@163.com, 465398889@qq.com
-** 
+** QQ: 363280425
+** Email: jims@jimsdog.com  mr.oldbig@gmail.com  jims.007007@163.com
+**
 ****************************************************************************/
 
-#include "fmainwindow.h"
-#include "futil.h"
+#include "JMainWindow.h"
+#include "JUtil.h"
 #include <QtCore>
 
 #include <QMouseEvent>
@@ -31,8 +27,11 @@
 #include <QDebug>
 #include <QDir>
 
+namespace JNQTF
+{
 
-FMainWindow::FMainWindow(QWidget *parent)
+
+JMainWindow::JMainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     qDebug("mainwindow init");
@@ -41,16 +40,16 @@ FMainWindow::FMainWindow(QWidget *parent)
     initConnect();
 }
 
-void FMainWindow::initData()
+void JMainWindow::initData()
 {
     leftbuttonpressed = false;
     lockmoved = false;
     locked = false;
 }
 
-void FMainWindow::initUI()
+void JMainWindow::initUI()
 {
-    titleBar = FTitleBar::getInstace();
+    titleBar = JTitleBar::getInstace();
 
     setObjectName(QString("FMainWindow"));
     QDesktopWidget* desktopWidget = QApplication::desktop();
@@ -68,12 +67,12 @@ void FMainWindow::initUI()
     trayicon->setToolTip(QString(qApp->applicationName()));
     trayicon->show();
 
-    flyWidget = new FlyWidget(this);
+    flyWidget = new JFlyWidget(this);
     flyWidget->move(desktopWidget->availableGeometry().width() * 0.8, desktopWidget->availableGeometry().height() *0.2);
 }
 
 
-void FMainWindow::initConnect( )
+void JMainWindow::initConnect( )
 {
     connect(titleBar, SIGNAL(minimuned()), this, SIGNAL(Hidden()));
     connect(titleBar, SIGNAL(closed()), this, SIGNAL(Hidden()));
@@ -87,7 +86,7 @@ void FMainWindow::initConnect( )
 }
 
 
-void FMainWindow::readSettings()
+void JMainWindow::readSettings()
 {
    QDesktopWidget* desktopWidget = QApplication::desktop();
    int w = desktopWidget->availableGeometry().width();
@@ -101,57 +100,57 @@ void FMainWindow::readSettings()
    settings.endGroup();
 }
 
-void FMainWindow::writeSettings()
+void JMainWindow::writeSettings()
 {
     QSettings settings(QDir::currentPath() + "/QFramer.ini", QSettings::IniFormat);
     qDebug(qPrintable(QDir::currentPath() + "/QFramer.ini"));
-    settings.beginGroup("FMainWindow");
+    settings.beginGroup("JMainWindow");
     settings.setValue("size", size());
     settings.setValue("pos", pos());
     settings.endGroup();
 }
 
-bool FMainWindow::isMoved()
+bool JMainWindow::isMoved()
 {
     return lockmoved;
 }
 
-bool FMainWindow::isLocked()
+bool JMainWindow::isLocked()
 {
     return locked;
 }
 
-void FMainWindow::setLockMoved(bool flag)
+void JMainWindow::setLockMoved(bool flag)
 {
     lockmoved = flag;
 }
 
-void FMainWindow::setLocked(bool flag)
+void JMainWindow::setLocked(bool flag)
 {
     locked = flag;
 }
 
-FTitleBar* FMainWindow::getTitleBar()
+JTitleBar* JMainWindow::getTitleBar()
 {
     return titleBar;
 }
 
-QStatusBar* FMainWindow::getStatusBar()
+QStatusBar* JMainWindow::getStatusBar()
 {
     return pstatusbar;
 }
 
-QSystemTrayIcon* FMainWindow::getQSystemTrayIcon()
+QSystemTrayIcon* JMainWindow::getQSystemTrayIcon()
 {
     return trayicon;
 }
 
-FlyWidget* FMainWindow::getFlyWidget()
+JFlyWidget* JMainWindow::getFlyWidget()
 {
     return flyWidget;
 }
 
-void FMainWindow::swithMaxNormal()
+void JMainWindow::swithMaxNormal()
 {
     if(isMaximized())
     {
@@ -162,12 +161,12 @@ void FMainWindow::swithMaxNormal()
 }
 
 
-void FMainWindow::showFlyWidget()
+void JMainWindow::showFlyWidget()
 {
     flyWidget->show();
 }
 
-void FMainWindow::mousePressEvent(QMouseEvent *e)
+void JMainWindow::mousePressEvent(QMouseEvent *e)
 {
     if(e->button() & Qt::LeftButton)
     {
@@ -184,7 +183,7 @@ void FMainWindow::mousePressEvent(QMouseEvent *e)
     e->accept();
 }
 
-void FMainWindow::mouseDoubleClickEvent(QMouseEvent *e)
+void JMainWindow::mouseDoubleClickEvent(QMouseEvent *e)
 {
     if(e->y() < titleBar->height() && e->x() < titleBar->width() - 120)
     {
@@ -195,7 +194,7 @@ void FMainWindow::mouseDoubleClickEvent(QMouseEvent *e)
     }
 }
 
-void FMainWindow::SetCursorStyle(enum_Direction direction)
+void JMainWindow::SetCursorStyle(enum_Direction direction)
 {
     //设置上下左右以及右上、右下、左上、坐下的鼠标形状
     switch(direction)
@@ -216,14 +215,14 @@ void FMainWindow::SetCursorStyle(enum_Direction direction)
     }
 }
 
-void FMainWindow::mouseReleaseEvent(QMouseEvent *e)
+void JMainWindow::mouseReleaseEvent(QMouseEvent *e)
 {
     leftbuttonpressed = false;
     titleBar->clearChecked();
     e->accept();
 }
 
-void FMainWindow::mouseMoveEvent(QMouseEvent *e)
+void JMainWindow::mouseMoveEvent(QMouseEvent *e)
 {
     if(isMaximized())
     {
@@ -251,7 +250,7 @@ void FMainWindow::mouseMoveEvent(QMouseEvent *e)
 
 }
 
-void FMainWindow::keyPressEvent(QKeyEvent *e)
+void JMainWindow::keyPressEvent(QKeyEvent *e)
 {
     if(e->key() == Qt::Key_Escape){
         close();
@@ -261,14 +260,14 @@ void FMainWindow::keyPressEvent(QKeyEvent *e)
     }
 }
 
-void FMainWindow::closeEvent(QCloseEvent *event)
+void JMainWindow::closeEvent(QCloseEvent *event)
 {
     writeSettings();
     QMainWindow::closeEvent(event);
 }
 
 
-void FMainWindow::animationClose()
+void JMainWindow::animationClose()
 {
     QPropertyAnimation *animation = new QPropertyAnimation(this, "windowOpacity");
     connect(animation, SIGNAL(finished()), this, SLOT(close()));
@@ -278,7 +277,7 @@ void FMainWindow::animationClose()
     animation->start();
 }
 
-void FMainWindow::onSystemTrayIconClicked(QSystemTrayIcon::ActivationReason reason)
+void JMainWindow::onSystemTrayIconClicked(QSystemTrayIcon::ActivationReason reason)
 {
     switch(reason)
         {
@@ -310,7 +309,9 @@ void FMainWindow::onSystemTrayIconClicked(QSystemTrayIcon::ActivationReason reas
         }
 }
 
-FMainWindow::~FMainWindow()
+JMainWindow::~JMainWindow()
 {
     printf("111111\n");
 }
+
+}   //namespace JNQTF

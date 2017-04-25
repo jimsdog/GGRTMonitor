@@ -1,33 +1,32 @@
-/****************************************************************************
+﻿/****************************************************************************
 **
-** Copyright (C) 2014 dragondjf
+** Copyright (C) 2017 JIMSDOG
 **
-** QFramer is a frame based on Qt5.3, you will be more efficient with it. 
-** As an Qter, Qt give us a nice coding experience. With user interactive experience(UE) 
-** become more and more important in modern software, deveployers should consider business and UE.
-** So, QFramer is born. QFramer's goal is to be a mature solution 
-** which you only need to be focus on your business but UE for all Qters.
+** JNQTFramework is a frameworke based on Qt5.3, you will be more efficient with it.
 **
-** Version	: 0.2.5.0
-** Author	: dragondjf
-** Website	: https://github.com/dragondjf
-** Project	: https://github.com/dragondjf/QCFramer
-** Blog		: http://my.oschina.net/dragondjf/home/?ft=atme
-** Wiki		: https://github.com/dragondjf/QCFramer/wiki
+** Version	: 0.0.1.0
+** Author	: Jimsdog
+** Website	: https://github.com/jimsdog
+** Project	: https://github.com/jimsdog/GGRTMonitor
+** Blog		: http://www.jimsdog.com
+** Wiki		: https://github.com/jimsdog/GGRTMonitor/wiki
 ** Lincence: LGPL V2
-** QQ: 465398889
-** Email: dragondjf@gmail.com, ding465398889@163.com, 465398889@qq.com
-** 
+** QQ: 363280425
+** Email: jims@jimsdog.com  mr.oldbig@gmail.com  jims.007007@163.com
+**
 ****************************************************************************/
 
-#ifndef FMOVABLEWIDGET_H
-#define FMOVABLEWIDGET_H
+#ifndef __JMovableWidget_H__
+#define __JMovableWidget_H__
 
 #include <QFrame>
 #include <QMouseEvent>
 
 
-class FMovableWidget : public QFrame
+namespace JNQTF
+{
+
+class JMovableWidget : public QFrame
 {
     Q_OBJECT
 private:
@@ -39,7 +38,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent *e);
 
 public:
-    explicit FMovableWidget(QWidget *parent = 0);
+    explicit JMovableWidget(QWidget *parent = 0);
 
 signals:
 
@@ -47,4 +46,6 @@ public slots:
 
 };
 
-#endif // FMOVABLEWIDGET_H
+}   //namespace JNQTF
+
+#endif // __JMovableWidget_H__
