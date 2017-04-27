@@ -45,7 +45,14 @@ SOURCES +=\
     Thirdparty/JNQTFramework/JWigglyWidget.cpp \
     Thirdparty/JNQTFramework/JShadowLabel.cpp \
     Thirdparty/JNQTFramework/JNoFocusDelegate.cpp \
-    Thirdparty/JNQTFramework/JNavgationBar.cpp
+    Thirdparty/JNQTFramework/JNavgationBar.cpp \
+    Thirdparty/JNQTFramework/JMovableWidget.cpp \
+    Thirdparty/JNQTFramework/JCenterWindow.cpp \
+    Thirdparty/JNQTFramework/JMainWindow.cpp \
+    Thirdparty/ECFramework/ECLogoFrame.cpp \
+    Views/ectestframe.cpp \
+    Thirdparty/ECFramework/ECNavigationBar.cpp \
+    Thirdparty/ECFramework/ECNavigationButton.cpp
 
 HEADERS  += \
     generated/GGConfig.h \
@@ -80,7 +87,15 @@ HEADERS  += \
     Thirdparty/JNQTFramework/JWigglyWidget.h \
     Thirdparty/JNQTFramework/JShadowLabel.h \
     Thirdparty/JNQTFramework/JNoFocusDelegate.h \
-    Thirdparty/JNQTFramework/JNavgationBar.h
+    Thirdparty/JNQTFramework/JNavgationBar.h \
+    Thirdparty/JNQTFramework/JMovableWidget.h \
+    Thirdparty/JNQTFramework/JCenterWindow.h \
+    Thirdparty/JNQTFramework/JMainWindow.h \
+    Thirdparty/ECFramework/ECLogoFrame.h \
+    Thirdparty/ECFramework/ECConfig.h \
+    Views/ectestframe.h \
+    Thirdparty/ECFramework/ECNavigationBar.h \
+    Thirdparty/ECFramework/ECNavigationButton.h
 
 FORMS    += \
     Views/loginview.ui \
@@ -100,6 +115,7 @@ INCLUDEPATH   += ./Core
 INCLUDEPATH   += ./Util
 INCLUDEPATH   += ./Views
 INCLUDEPATH   += ./Views/util
+INCLUDEPATH   += ./Thirdparty/ECFramework
 
 !equals(ICE_HOME,"/usr"){
     INCLUDEPATH   += $$quote($$ICE_HOME/include)

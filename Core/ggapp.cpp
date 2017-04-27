@@ -1,4 +1,4 @@
-#include "ggapp.h"
+﻿#include "ggapp.h"
 #include "ggcommdefine.h"
 
 #include <QPixmap>
@@ -9,6 +9,8 @@
 #include "ggcoordinatori.h"
 #include "loginview.h"
 
+#include "ectestframe.h"
+
 
 
 GGApp::GGApp(int argc, char** argv)
@@ -18,7 +20,7 @@ GGApp::GGApp(int argc, char** argv)
     QCoreApplication::setOrganizationDomain(ORGANIZATIONDOMAIN);
     QCoreApplication::setApplicationName(APPLICATION);
 
-    LoginView* loginView = new LoginView(0);
+    /*LoginView* loginView = new LoginView(0);
     _coordinator = new GGCoordinatorI(loginView, argc, argv);
 
     connect(this, SIGNAL(aboutToQuit()), this, SLOT(shutdown()));
@@ -39,7 +41,10 @@ GGApp::GGApp(int argc, char** argv)
     //----------end added code
 
     splash.finish(loginView);
-    loginView->show();
+    loginView->show();*/
+
+    ECTestFrame *ectestframe = new ECTestFrame(0);
+    ectestframe->show();
 
 }
 
