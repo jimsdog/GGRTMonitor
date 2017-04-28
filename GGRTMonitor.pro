@@ -52,7 +52,11 @@ SOURCES +=\
     Thirdparty/ECFramework/ECLogoFrame.cpp \
     Views/ectestframe.cpp \
     Thirdparty/ECFramework/ECNavigationBar.cpp \
-    Thirdparty/ECFramework/ECNavigationButton.cpp
+    Thirdparty/ECFramework/ECNavigationButton.cpp \
+    Thirdparty/ECFramework/ECToolButton.cpp \
+    Thirdparty/ECFramework/ECSystemToolBar.cpp \
+    Thirdparty/ECFramework/ECAppBar.cpp \
+    Thirdparty/ECFramework/ECMainFrame.cpp
 
 HEADERS  += \
     generated/GGConfig.h \
@@ -95,7 +99,11 @@ HEADERS  += \
     Thirdparty/ECFramework/ECConfig.h \
     Views/ectestframe.h \
     Thirdparty/ECFramework/ECNavigationBar.h \
-    Thirdparty/ECFramework/ECNavigationButton.h
+    Thirdparty/ECFramework/ECNavigationButton.h \
+    Thirdparty/ECFramework/ECToolButton.h \
+    Thirdparty/ECFramework/ECSystemToolBar.h \
+    Thirdparty/ECFramework/ECAppBar.h \
+    Thirdparty/ECFramework/ECMainFrame.h
 
 FORMS    += \
     Views/loginview.ui \

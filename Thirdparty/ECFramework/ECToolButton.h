@@ -13,25 +13,36 @@
 ** Lincence: LGPL V2
 ** QQ: 363280425
 ** Email: jims@jimsdog.com  mr.oldbig@gmail.com  jims.007007@163.com
-** 
+**
 ****************************************************************************/
 
-#ifndef __ECConfig_H__
-#define __ECConfig_H__
+#ifndef __ECTOOLBUTTON_H__
+#define __ECTOOLBUTTON_H__
 
+#include <QMenu>
+#include <QToolButton>
 
 namespace ECFramework
 {
-#define EC_TITLEBAR_HEIGHT 60                       //标题栏高度
 
-#define EC_LOGOFRAME_HEIGHT 60                      //logo高度
-#define EC_LOGOFRAME_WIDTH  200                     //logo宽度
+class ECToolButton : public QToolButton
+{
+    Q_OBJECT
+public:
+    explicit ECToolButton(QWidget *parent = 0);
 
-#define EC_NAVIGATIONBUTTON_WIDTH  60               //导航按键宽度
-#define EC_NAVIGATIONBUTTON_MAXCOUNT  7             //导航按键最大个数
+    void SetButtonMenu(QMenu *menu);
 
-#define EC_SYSTEMTOOLBAR_HEIGHT 25                  //系统菜单栏高度
+private:
+    void initData();
+    void initConnect();
+    void initUI();
+
+public slots:
+    void Recover();
+
+};
 
 }   //namespace ECFramework
 
-#endif // __ECConfig_H__
+#endif // __ECTOOLBUTTON_H__

@@ -16,56 +16,37 @@
 **
 ****************************************************************************/
 
-#ifndef __ECNavigationBar_H__
-#define __ECNavigationBar_H__
-
+#ifndef ECAPPBAR_H
+#define ECAPPBAR_H
 
 #include <QFrame>
-#include <QHBoxLayout>
-#include "ECNavigationButton.h"
-
+#include <QVBoxLayout>
+#include "ECSystemToolBar.h"
 
 
 namespace ECFramework
 {
 
-class ECNavigationBar : public QFrame
+class ECAppBar : public QFrame
 {
     Q_OBJECT
 private:
-    QHBoxLayout*        m_navlayout;
-    int                 m_cIndex;
-
-    QList<ECNavigationButton*>      m_buttons;
-    QList<QString>                  m_buttonTitles;
-
-public:
-    static ECNavigationBar* m_instance;
+    QVBoxLayout*        m_mainlayout;
+    ECSystemToolBar*    m_systemtoolbar;
 
 private:
     void initData();
     void initConnect();
     void initUI();
-
-
 public:
-    explicit ECNavigationBar(QWidget *parent = 0);
-    static ECNavigationBar* getInstace(QWidget *parent = 0);
+    static ECAppBar* m_instance;
+public:
+    explicit ECAppBar(QWidget *parent = 0);
+    static ECAppBar* getInstace(QWidget *parent = 0);
 
-    int GetCurrentIndex();
-    int GetCount();
-    void SetCurrentIndex(int index);
-
-    void AddNavgationButton(QString imgpath, QString title);
-
-    void ResetLayout();
-
-signals:
-    void indexChanged(int i);
-private slots:
-    void setButtonChecked();
+    void SetSystemToolSettingMenu(QMenu* menu);
 };
 
 }   //namespace ECFramework
 
-#endif // __ECNavigationBar_H__
+#endif // ECAPPBAR_H

@@ -50,10 +50,10 @@ void ECNavigationBar::initData()
 
 void ECNavigationBar::initUI()
 {
-    resetLayout();
+
 }
 
-void ECNavigationBar::resetLayout()
+void ECNavigationBar::ResetLayout()
 {
     //setFixedSize(QSize(EC_NAVIGATIONBUTTON_WIDTH*(GetCount() != 0? GetCount(): 1), EC_TITLEBAR_HEIGHT));
     m_navlayout = new QHBoxLayout(this);
@@ -62,7 +62,7 @@ void ECNavigationBar::resetLayout()
         m_navlayout->addWidget(m_buttons.at(i));
     }
     m_navlayout->addStretch();
-    m_navlayout->setContentsMargins(5, 5, 5, 5);
+    m_navlayout->setContentsMargins(0, 0, 0, 0);
     m_navlayout->setSpacing(0);
     setLayout(m_navlayout);
 }
@@ -71,7 +71,7 @@ void ECNavigationBar::initConnect()
 {
     for(int i=0; i<m_buttons.length(); i++)
     {
-        connect(m_buttons.at(i), SIGNAL(clicked()), this, SLOT(SetButtonChecked()));
+        connect(m_buttons.at(i), SIGNAL(clicked()), this, SLOT(setButtonChecked()));
     }
 }
 
@@ -85,8 +85,7 @@ void ECNavigationBar::AddNavgationButton(QString imgpath, QString title)
     ECNavigationButton* button = new ECNavigationButton(this);
     m_buttons.append(button);
     button->Init(imgpath, title);
-    connect(button, SIGNAL(clicked()), this, SLOT(SetButtonChecked()));
-    resetLayout();
+    connect(button, SIGNAL(clicked()), this, SLOT(setButtonChecked()));
 }
 
 int ECNavigationBar::GetCurrentIndex()
@@ -104,13 +103,13 @@ int ECNavigationBar::GetCount()
     return m_buttons.size();
 }
 
-void ECNavigationBar::SetButtonChecked()
+void ECNavigationBar::setButtonChecked()
 {
     for (int i = 0; i < m_buttons.size(); ++i) {
         if (m_buttons.at(i) == sender())
         {
             m_buttons.at(i)->setChecked(true);
-            emit IndexChanged(i);
+            emit indexChanged(i);
             m_cIndex = i;
         }
         else{

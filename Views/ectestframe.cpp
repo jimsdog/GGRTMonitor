@@ -20,6 +20,7 @@ void ECTestFrame::initData()
 {
     m_logoframe = ECFramework::ECLogoFrame::getInstace(this);
     m_navigationbar = ECFramework::ECNavigationBar::getInstace(this);
+    m_appbar = ECFramework::ECAppBar::getInstace(this);
 }
 
 void ECTestFrame::initUI()
@@ -47,6 +48,10 @@ void ECTestFrame::initUI()
 
     m_navigationbar->AddNavgationButton(apppath + "/Images/icons/dark/appbar.home.png", QString::fromLocal8Bit("主屏"));
 
+    m_navigationbar->AddNavgationButton(apppath + "/Images/icons/dark/appbar.cog.png", QString::fromLocal8Bit("设置"));
+
+    m_navigationbar->ResetLayout();
+
     QVBoxLayout* mainvlayout = new QVBoxLayout(this);
     QHBoxLayout* mainhlayout = new QHBoxLayout(this);
     mainhlayout->addWidget(m_logoframe);
@@ -54,6 +59,10 @@ void ECTestFrame::initUI()
     mainhlayout->addWidget(m_navigationbar);
 
     mainhlayout->addStretch();
+
+    mainhlayout->addWidget(m_appbar);
+
+
 
     mainhlayout->setContentsMargins(0, 0, 0, 0);
     mainhlayout->setSpacing(0);

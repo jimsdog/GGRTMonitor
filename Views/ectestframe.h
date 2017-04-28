@@ -3,6 +3,7 @@
 
 #include "ECLogoFrame.h"
 #include "ECNavigationBar.h"
+#include "ECAppBar.h"
 #include <QFrame>
 
 class ECTestFrame : public QFrame
@@ -12,6 +13,8 @@ private:
     ECFramework::ECLogoFrame        *m_logoframe;
 
     ECFramework::ECNavigationBar    *m_navigationbar;
+
+    ECFramework::ECAppBar           *m_appbar;
 public:
     explicit ECTestFrame(QWidget *parent = 0);
 
