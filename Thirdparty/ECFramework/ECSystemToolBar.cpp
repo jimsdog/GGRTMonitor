@@ -291,6 +291,8 @@ void ECSystemToolBar::changeFix()
         m_fixButton->setIconSize(QSize(height(), height()));
     }
     m_fixflag = !m_fixflag;
+
+    emit fixchanged(m_fixflag);
 }
 
 

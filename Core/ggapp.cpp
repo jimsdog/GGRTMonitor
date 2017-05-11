@@ -11,14 +11,20 @@
 
 #include "ectestframe.h"
 
+#include "mainwindow.h"
+
 
 
 GGApp::GGApp(int argc, char** argv)
     : QApplication(argc, argv)
 {
-    QCoreApplication::setOrganizationName(ORGANIZATION);
+    /*QCoreApplication::setOrganizationName(ORGANIZATION);
     QCoreApplication::setOrganizationDomain(ORGANIZATIONDOMAIN);
-    QCoreApplication::setApplicationName(APPLICATION);
+    QCoreApplication::setApplicationName(APPLICATION);*/
+
+    QApplication::setOrganizationName(ORGANIZATION);
+    QApplication::setOrganizationDomain(ORGANIZATIONDOMAIN);
+    QApplication::setApplicationName(APPLICATION);
 
     /*LoginView* loginView = new LoginView(0);
     _coordinator = new GGCoordinatorI(loginView, argc, argv);
@@ -43,8 +49,11 @@ GGApp::GGApp(int argc, char** argv)
     splash.finish(loginView);
     loginView->show();*/
 
-    ECTestFrame *ectestframe = new ECTestFrame(0);
-    ectestframe->show();
+    //ECTestFrame *ectestframe = new ECTestFrame(0);
+    //ectestframe->show();
+
+    MainWindow *mainwindow = new MainWindow();
+    mainwindow->show();
 
 }
 

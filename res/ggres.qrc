@@ -25,6 +25,6 @@
         <file>util/qss/gray.css</file>
         <file>util/qss/lightgray.css</file>
         <file>util/qss/silvery.css</file>
-        <file>ui/logo.png</file>
+        <file>ui/robot128X128.ico</file>
     </qresource>
 </RCC>

@@ -26,6 +26,7 @@
 #include "ECMainFrame.h"
 
 
+
 namespace ECFramework
 {
 
@@ -50,6 +51,28 @@ ECMainFrame* ECMainFrame::getInstace(QWidget *parent)
     return m_instance;
 }
 
+void ECMainFrame::resizeEvent(QResizeEvent *event)
+{
+    QFrame::resizeEvent(event);
+}
+
+int ECMainFrame::GetTopHeight()
+{
+    if(m_logoframe)
+    {
+        return m_logoframe->size().height();
+    }
+    else
+    {
+       return 0;
+    }
+}
+
+int ECMainFrame::GetTopWidth()
+{
+    return size().width();
+}
+
 void ECMainFrame::initData()
 {
     m_mainlayout = new QVBoxLayout(this);
@@ -61,12 +84,15 @@ void ECMainFrame::initData()
 
     m_stackWidget = new QStackedWidget(this);
 
+    m_trayicon = new QSystemTrayIcon(QIcon(QString(":/image/ui/robot128X128.ico")), this);
+    m_flyWidget = new ECFlyWidget(this);
+
     m_preindex = 0;
 }
 
 void ECMainFrame::initUI()
 {
-    QString qssstr = QLatin1String("QFrame#ECTestFrame{\
+    QString qssstr = QLatin1String("QFrame#ECMainFrame{\
                                    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 82, 112, 255), stop:0.5 rgba(0, 211, 197, 255), stop:1 rgba(0, 82, 112, 255));\
                                    background-image: url(none);\
                                    background-repeat:repeat-xy;\
@@ -80,6 +106,14 @@ void ECMainFrame::initUI()
 
 
 
+    m_trayicon->setObjectName(QString("trayicon"));
+    m_trayicon->setToolTip(QString(qApp->applicationName()));
+    m_trayicon->show();
+
+    m_flyWidget->move(desktopWidget->availableGeometry().width() * 0.6, desktopWidget->availableGeometry().height() *0.2);
+
+
+
     m_titlebarlayout->addWidget(m_logoframe);
     m_titlebarlayout->addWidget(m_navigationbar);
     m_titlebarlayout->addStretch();
@@ -88,7 +122,7 @@ void ECMainFrame::initUI()
     m_titlebarlayout->setSpacing(0);
 
     m_mainlayout->addLayout(m_titlebarlayout);
-    m_mainlayout->addStretch();
+    m_mainlayout->addWidget(m_stackWidget);
     m_mainlayout->setContentsMargins(0, 0, 0, 0);
     m_mainlayout->setSpacing(0);
     setLayout(m_mainlayout);
@@ -133,6 +167,16 @@ ECNavigationBar* ECMainFrame::GetNavgationBar()
 ECAppBar* ECMainFrame::GetAppBar()
 {
     return m_appbar;
+}
+
+QSystemTrayIcon* ECMainFrame::GetQSystemTrayIcon()
+{
+    return m_trayicon;
+}
+
+ECFlyWidget* ECMainFrame::GetFlyWidget()
+{
+    return m_flyWidget;
 }
 
 
@@ -195,9 +239,14 @@ void ECMainFrame::switchScreen(const int index)
 
 void ECMainFrame::cloudAntimation(Animation_Direction direction)
 {
+    QString qssstr = QLatin1String("QLabel{\
+                                   background-color: rgba(0, 211, 197, 255);\
+                               }");
+
     QLabel* circle = new QLabel(m_stackWidget->currentWidget());
     QLabel* line = new QLabel(this);
-    line->setObjectName(QString("AntimationLine"));
+    //line->setObjectName(QString("AntimationLine"));
+    line->setStyleSheet(qssstr);
     line->resize(0, 2);
     line->show();
     #if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)

@@ -18,9 +18,11 @@ ECTestFrame::ECTestFrame(QWidget *parent)
 
 void ECTestFrame::initData()
 {
-    m_logoframe = ECFramework::ECLogoFrame::getInstace(this);
+    /*m_logoframe = ECFramework::ECLogoFrame::getInstace(this);
     m_navigationbar = ECFramework::ECNavigationBar::getInstace(this);
-    m_appbar = ECFramework::ECAppBar::getInstace(this);
+    m_appbar = ECFramework::ECAppBar::getInstace(this);*/
+
+    m_mainframe = ECFramework::ECMainFrame::getInstace(this);
 }
 
 void ECTestFrame::initUI()
@@ -41,7 +43,7 @@ void ECTestFrame::initUI()
     QString appimgpath = apppath + "/Images/logogoogol.png";
     QString title = QString::fromLocal8Bit("重庆固高");
 
-    m_logoframe->Init(appimgpath, title);
+    /*m_logoframe->Init(appimgpath, title);
     //m_logoframe->Init(appimgpath, QString("Test1Test2Test3Test4Test5Test6"));
     //m_logoframe->Init(appimgpath, QString());
     //m_logoframe->Init(QString(), QString());
@@ -69,6 +71,23 @@ void ECTestFrame::initUI()
 
     mainvlayout->addLayout(mainhlayout);
     mainvlayout->addStretch();
+    mainvlayout->setContentsMargins(0, 0, 0, 0);
+    mainvlayout->setSpacing(0);
+    setLayout(mainvlayout);*/
+
+    QFrame *setting = new QFrame(this);
+    //setting->setFixedSize(500,600);
+
+    QFrame *mainpage = new QFrame(this);
+    //mainpage->setFixedSize(500,600);
+
+    m_mainframe->SetLogo(appimgpath, title);
+    m_mainframe->AddNavgation(apppath + "/Images/icons/dark/appbar.home.png", QString::fromLocal8Bit("主屏"), mainpage);
+    m_mainframe->AddNavgation(apppath + "/Images/icons/dark/appbar.cog.png", QString::fromLocal8Bit("设置"), setting);
+    m_mainframe->ResetNavgationLayout();
+
+    QVBoxLayout* mainvlayout = new QVBoxLayout(this);
+    mainvlayout->addWidget(m_mainframe);
     mainvlayout->setContentsMargins(0, 0, 0, 0);
     mainvlayout->setSpacing(0);
     setLayout(mainvlayout);

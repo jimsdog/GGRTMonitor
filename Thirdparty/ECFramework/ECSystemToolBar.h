@@ -88,6 +88,7 @@ signals:
     void minimuned();
     void normaled();
     void closed();
+    void fixchanged(bool isfix);
 
 public slots:
     void switchMaxMin();

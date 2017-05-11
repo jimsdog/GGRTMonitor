@@ -24,13 +24,14 @@
 #include <QVBoxLayout>
 #include <QStackedWidget>
 
+#include <QSystemTrayIcon>
+#include "ECFlyWidget.h"
 #include "ECLogoFrame.h"
 #include "ECNavigationBar.h"
 #include "ECAppBar.h"
 
 namespace ECFramework
 {
-
 
 class ECMainFrame : public QFrame
 {
@@ -57,6 +58,9 @@ private:
 
     QStackedWidget          *m_stackWidget;
 
+    QSystemTrayIcon         *m_trayicon;
+    ECFlyWidget             *m_flyWidget;
+
     int                     m_preindex;
 
 public:
@@ -66,6 +70,9 @@ private:
     void initData();
     void initConnect();
     void initUI();
+
+protected:
+    void resizeEvent(QResizeEvent * event);
 
 public:
     explicit ECMainFrame(QWidget *parent = 0);
@@ -80,6 +87,12 @@ public:
     ECLogoFrame* GetLogoFrame();
     ECNavigationBar* GetNavgationBar();
     ECAppBar* GetAppBar();
+
+    QSystemTrayIcon* GetQSystemTrayIcon();
+    ECFlyWidget* GetFlyWidget();
+
+    int GetTopHeight();
+    int GetTopWidth();
 
 
 signals:

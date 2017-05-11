@@ -43,6 +43,11 @@ ECAppBar* ECAppBar::getInstace(QWidget *parent)
     return m_instance;
 }
 
+ECSystemToolBar* ECAppBar::GetSystemToolBar()
+{
+    return m_systemtoolbar;
+}
+
 void ECAppBar::initData()
 {
     m_mainlayout = new QVBoxLayout(this);
@@ -65,7 +70,11 @@ void ECAppBar::initUI()
 
 void ECAppBar::initConnect()
 {
-
+    connect(m_systemtoolbar, SIGNAL(maximumed()), this, SIGNAL(maximumed()));
+    connect(m_systemtoolbar, SIGNAL(minimuned()), this, SIGNAL(minimuned()));
+    connect(m_systemtoolbar, SIGNAL(normaled()), this, SIGNAL(normaled()));
+    connect(m_systemtoolbar, SIGNAL(closed()), this, SIGNAL(closed()));
+    connect(m_systemtoolbar, SIGNAL(fixchanged(bool)), this, SIGNAL(fixchanged(bool)));
 }
 
 void ECAppBar::SetSystemToolSettingMenu(QMenu* menu)

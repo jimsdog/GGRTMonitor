@@ -16,46 +16,38 @@
 **
 ****************************************************************************/
 
-#ifndef ECAPPBAR_H
-#define ECAPPBAR_H
+#ifndef __ECSETTINGMENU_H__
+#define __ECSETTINGMENU_H__
 
-#include <QFrame>
-#include <QVBoxLayout>
-#include "ECSystemToolBar.h"
-
+#include <QMenu>
+#include <QAction>
 
 namespace ECFramework
 {
 
-class ECAppBar : public QFrame
+class ECMainWindow;
+
+class ECSettingMenu : public QMenu
 {
     Q_OBJECT
 private:
-    QVBoxLayout*        m_mainlayout;
-    ECSystemToolBar*    m_systemtoolbar;
+    ECMainWindow                *m_mainwindow;
 
+    QList<QAction*>             m_actions;
+    QList<QString>              m_actionNames;
+    QList<QString>              m_actionIcons;
+    QMap<QString, QAction*>     m_actionMaps;
 private:
     void initData();
-    void initConnect();
     void initUI();
+    void initConnect();
 public:
-    static ECAppBar* m_instance;
+    explicit ECSettingMenu(QWidget *parent = 0);
+
 public:
-    explicit ECAppBar(QWidget *parent = 0);
-    static ECAppBar* getInstace(QWidget *parent = 0);
-
-    void SetSystemToolSettingMenu(QMenu* menu);
-
-    ECSystemToolBar* GetSystemToolBar();
-
-signals:
-    void maximumed();
-    void minimuned();
-    void normaled();
-    void closed();
-    void fixchanged(bool isfix);
+    void Init(ECMainWindow *mainwindow);
 };
 
 }   //namespace ECFramework
 
-#endif // ECAPPBAR_H
+#endif // __ECSETTINGMENU_H__

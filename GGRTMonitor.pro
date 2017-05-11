@@ -56,7 +56,11 @@ SOURCES +=\
     Thirdparty/ECFramework/ECToolButton.cpp \
     Thirdparty/ECFramework/ECSystemToolBar.cpp \
     Thirdparty/ECFramework/ECAppBar.cpp \
-    Thirdparty/ECFramework/ECMainFrame.cpp
+    Thirdparty/ECFramework/ECMainFrame.cpp \
+    Thirdparty/ECFramework/ECFlyWidget.cpp \
+    Thirdparty/ECFramework/ECMainWindow.cpp \
+    Views/mainwindow.cpp \
+    Thirdparty/ECFramework/ECSettingMenu.cpp
 
 HEADERS  += \
     generated/GGConfig.h \
@@ -103,7 +107,11 @@ HEADERS  += \
     Thirdparty/ECFramework/ECToolButton.h \
     Thirdparty/ECFramework/ECSystemToolBar.h \
     Thirdparty/ECFramework/ECAppBar.h \
-    Thirdparty/ECFramework/ECMainFrame.h
+    Thirdparty/ECFramework/ECMainFrame.h \
+    Thirdparty/ECFramework/ECFlyWidget.h \
+    Thirdparty/ECFramework/ECMainWindow.h \
+    Views/mainwindow.h \
+    Thirdparty/ECFramework/ECSettingMenu.h
 
 FORMS    += \
     Views/loginview.ui \
@@ -132,7 +140,7 @@ INCLUDEPATH   += ./Thirdparty/ECFramework
 win32{
 #    ICON = resources/icons/logo.png
     DEFINES += WIN32_LEAN_AND_MEAN
-#    RC_FILE = client.rc
+    RC_FILE = app.rc
     CONFIG(debug,debug|release){
         LIBS += "IceUtild.lib" \
                 "Iced.lib" \
@@ -145,6 +153,7 @@ win32{
     }
     ICE_x64suffix = $$(ICE_x64suffix)
     QMAKE_LIBDIR  += $$quote($$ICE_HOME/lib$$ICE_x64suffix)
+
 }
 
 RESOURCES += \
