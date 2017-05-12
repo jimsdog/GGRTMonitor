@@ -83,15 +83,15 @@ void ECSystemToolBar::initUI()
 
     m_closeButton->setStyleSheet(qssstr);
 
-    QString apppath = QDir::currentPath();
+    //QString apppath = QDir::currentPath();
 
-    SetSettingButton(apppath + "/Images/icons/dark/appbar.control.down.png");
-    SetFixButton(apppath + "/Images/icons/dark/appbar.lock.png",
-                 apppath + "/Images/icons/dark/appbar.unlock.keyhole.png");
-    SetMinButton(apppath + "/Images/icons/dark/appbar.minus.png");
-    SetMaxButton(apppath + "/Images/icons/dark/appbar.app.png",
-                 apppath + "/Images/icons/dark/appbar.fullscreen.box.png");
-    SetCloseButton(apppath + "/Images/icons/dark/appbar.close.png");
+    SetSettingButton(":/image/ui/icons/dark/appbar.control.down.png");
+    SetFixButton(":/image/ui/icons/dark/appbar.lock.png",
+                 ":/image/ui/icons/dark/appbar.unlock.keyhole.png");
+    SetMinButton(":/image/ui/icons/dark/appbar.minus.png");
+    SetMaxButton(":/image/ui/icons/dark/appbar.app.png",
+                 ":/image/ui/icons/dark/appbar.fullscreen.box.png");
+    SetCloseButton(":/image/ui/icons/dark/appbar.close.png");
 
     QHBoxLayout* mainlayout = new QHBoxLayout;
     mainlayout->addWidget(m_settingButton);

@@ -21,6 +21,7 @@
 
 #include <QMainWindow>
 #include <QCloseEvent>
+#include <QStatusBar>
 
 #include "ECMainFrame.h"
 
@@ -34,6 +35,7 @@ class ECMainWindow : public QMainWindow
     Q_OBJECT
 private:
     ECMainFrame             *m_mainframe;
+    QStatusBar              *m_pstatusbar;
 
     ECSettingMenu           *m_settingmenu;
 
@@ -57,6 +59,8 @@ private:
     void initUI();
 public:
     explicit ECMainWindow(QWidget *parent = 0);
+
+    QStatusBar* GetStatusBar();
 
 signals:
     void Hidden();

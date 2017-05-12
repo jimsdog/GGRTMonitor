@@ -101,8 +101,7 @@ void ECMainFrame::initUI()
 
     QDesktopWidget* desktopWidget = QApplication::desktop();
     setMaximumSize(desktopWidget->availableGeometry().size());
-
-    resize(desktopWidget->availableGeometry().size()* 0.6);
+    setMinimumSize(desktopWidget->availableGeometry().size()* 0.6);
 
 
 
@@ -110,7 +109,7 @@ void ECMainFrame::initUI()
     m_trayicon->setToolTip(QString(qApp->applicationName()));
     m_trayicon->show();
 
-    m_flyWidget->move(desktopWidget->availableGeometry().width() * 0.6, desktopWidget->availableGeometry().height() *0.2);
+    m_flyWidget->move(desktopWidget->availableGeometry().width() * 0.9, desktopWidget->availableGeometry().height() *0.2);
 
 
 

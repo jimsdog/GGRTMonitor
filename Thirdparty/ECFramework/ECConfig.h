@@ -23,6 +23,7 @@
 namespace ECFramework
 {
 #define EC_TITLEBAR_HEIGHT 60                       //标题栏高度
+#define EC_STATUSBAR_HEIGHT 30                      //状态栏高度
 
 #define EC_LOGOFRAME_HEIGHT 60                      //logo高度
 #define EC_LOGOFRAME_WIDTH  200                     //logo宽度

@@ -22,6 +22,7 @@
 #include <QVBoxLayout>
 #include <QDir>
 
+#include "ECConfig.h"
 #include "ECMainWindow.h"
 #include "ECSettingMenu.h"
 
@@ -40,6 +41,7 @@ ECMainWindow::ECMainWindow(QWidget *parent) : QMainWindow(parent)
 void ECMainWindow::initData()
 {
     m_mainframe = ECMainFrame::getInstace(this);
+    m_pstatusbar = new QStatusBar(this);
     m_settingmenu = new ECSettingMenu(this);
 
     m_leftbuttonpressed = false;
@@ -51,6 +53,15 @@ void ECMainWindow::initUI()
 {
     setWindowFlags(Qt::FramelessWindowHint);
     setWindowTitle("GGRTMonitor");
+
+    QDesktopWidget* desktopWidget = QApplication::desktop();
+    setMaximumSize(desktopWidget->availableGeometry().size());
+    setMinimumSize(desktopWidget->availableGeometry().size()* 0.6);
+    resize(desktopWidget->availableGeometry().size()* 0.8);
+
+
+    m_pstatusbar->setFixedHeight(EC_STATUSBAR_HEIGHT);
+    setStatusBar(m_pstatusbar);
 
     QString apppath = QDir::currentPath();
     QString appimgpath = apppath + "/Images/logogoogol.png";
@@ -69,8 +80,8 @@ void ECMainWindow::initUI()
     m_mainframe->GetAppBar()->SetSystemToolSettingMenu(m_settingmenu);
 
     m_mainframe->SetLogo(appimgpath, title);
-    m_mainframe->AddNavgation(apppath + "/Images/icons/dark/appbar.home.png", QString::fromLocal8Bit("主屏"), mainpage);
-    m_mainframe->AddNavgation(apppath + "/Images/icons/dark/appbar.cog.png", QString::fromLocal8Bit("设置"), setting);
+    m_mainframe->AddNavgation(":/image/ui/icons/dark/appbar.home.png", QString::fromLocal8Bit("主屏"), mainpage);
+    m_mainframe->AddNavgation(":/image/ui/icons/dark/appbar.cog.png", QString::fromLocal8Bit("设置"), setting);
     m_mainframe->ResetNavgationLayout();
 
     m_mainframe->GetNavgationBar()->SetCurrentIndex(0);
@@ -98,6 +109,11 @@ void ECMainWindow::initConnect()
             this, SLOT(onSystemTrayIconClicked(QSystemTrayIcon::ActivationReason)));
 
     connect(m_mainframe->GetFlyWidget(), SIGNAL(showmainwindow()), this, SLOT(showMainWindow()));
+}
+
+QStatusBar* ECMainWindow::GetStatusBar()
+{
+    return m_pstatusbar;
 }
 
 void ECMainWindow::showMainWindow()
@@ -166,6 +182,7 @@ void ECMainWindow::keyPressEvent(QKeyEvent *e)
 
 void ECMainWindow::closeEvent(QCloseEvent *event)
 {
+    m_mainframe->GetQSystemTrayIcon()->deleteLater();
     QMainWindow::closeEvent(event);
 }
 

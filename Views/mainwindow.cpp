@@ -11,10 +11,10 @@
 MainWindow::MainWindow(QWidget *parent)
     :ECMainWindow(parent)
 {
-    QDesktopWidget* desktopWidget = QApplication::desktop();
-    setMaximumSize(desktopWidget->availableGeometry().size());
+    //QDesktopWidget* desktopWidget = QApplication::desktop();
+    //setMaximumSize(desktopWidget->availableGeometry().size());
 
-    resize(desktopWidget->availableGeometry().size()* 0.6);
+    //resize(desktopWidget->availableGeometry().size()* 0.6);
 }
 /*
 void MainWindow::resizeEvent(QResizeEvent *event)
