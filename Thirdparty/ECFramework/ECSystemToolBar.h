@@ -29,6 +29,7 @@ class ECSystemToolBar : public QFrame
 {
     Q_OBJECT
 private:
+    ECToolButton*       m_refreshButton;
     ECToolButton*       m_settingButton;
     ECToolButton*       m_fixButton;
     ECToolButton*       m_minButton;
@@ -58,6 +59,11 @@ public:
     void SetBarHeight(int height);
     void SetSettingMenu(QMenu* menu);
 
+    void SetRefreshButton(QString imgpath);
+    ECToolButton* GetRefreshButton();
+    void SetRefreshButtonVisible(bool visible);
+    bool IsRefreshButtonVisible();
+
     void SetSettingButton(QString imgpath);
     ECToolButton* GetSettingButton();
     void SetSettingButtonVisible(bool visible);
@@ -84,6 +90,7 @@ public:
     bool IsCloseButtonVisible();
 
 signals:
+    void refreshed();
     void maximumed();
     void minimuned();
     void normaled();

@@ -70,6 +70,7 @@ void ECAppBar::initUI()
 
 void ECAppBar::initConnect()
 {
+    connect(m_systemtoolbar, SIGNAL(refreshed()), this, SIGNAL(refreshed()));
     connect(m_systemtoolbar, SIGNAL(maximumed()), this, SIGNAL(maximumed()));
     connect(m_systemtoolbar, SIGNAL(minimuned()), this, SIGNAL(minimuned()));
     connect(m_systemtoolbar, SIGNAL(normaled()), this, SIGNAL(normaled()));

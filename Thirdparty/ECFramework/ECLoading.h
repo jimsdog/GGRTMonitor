@@ -16,47 +16,31 @@
 **
 ****************************************************************************/
 
-#ifndef ECAPPBAR_H
-#define ECAPPBAR_H
+#ifndef __ECLOADING_H__
+#define __ECLOADING_H__
 
-#include <QFrame>
-#include <QVBoxLayout>
-#include "ECSystemToolBar.h"
-
+#include <QWebEngineView>
 
 namespace ECFramework
 {
 
-class ECAppBar : public QFrame
+class ECLoading : public QWebEngineView
 {
     Q_OBJECT
 private:
-    QVBoxLayout*        m_mainlayout;
-    ECSystemToolBar*    m_systemtoolbar;
-
+    QString             m_htmlpath;
 private:
     void initData();
     void initConnect();
     void initUI();
+protected:
+    void contextMenuEvent(QContextMenuEvent *event);
 public:
-    static ECAppBar* m_instance;
-public:
-    explicit ECAppBar(QWidget *parent = 0);
-    static ECAppBar* getInstace(QWidget *parent = 0);
+    explicit ECLoading(QWidget *parent = 0);
 
-    void SetSystemToolSettingMenu(QMenu* menu);
-
-    ECSystemToolBar* GetSystemToolBar();
-
-signals:
-    void refreshed();
-    void maximumed();
-    void minimuned();
-    void normaled();
-    void closed();
-    void fixchanged(bool isfix);
+    void Init(QString htmlpath);
 };
 
 }   //namespace ECFramework
 
-#endif // ECAPPBAR_H
+#endif // __ECLOADING_H__

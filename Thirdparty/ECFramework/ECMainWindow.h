@@ -66,6 +66,7 @@ signals:
     void Hidden();
 
 public slots:
+    void refreshAction();
     void swithMaxNormal();
     void showFlyWidget();
     void onSystemTrayIconClicked(QSystemTrayIcon::ActivationReason reason);

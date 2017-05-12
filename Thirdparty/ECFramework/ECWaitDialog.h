@@ -16,47 +16,29 @@
 **
 ****************************************************************************/
 
-#ifndef ECAPPBAR_H
-#define ECAPPBAR_H
+#ifndef __ECWAITDIALOG_H__
+#define __ECWAITDIALOG_H__
 
-#include <QFrame>
-#include <QVBoxLayout>
-#include "ECSystemToolBar.h"
 
+#include <QDialog>
+#include "ECLoading.h"
 
 namespace ECFramework
 {
 
-class ECAppBar : public QFrame
+class ECWaitDialog : public QDialog
 {
     Q_OBJECT
 private:
-    QVBoxLayout*        m_mainlayout;
-    ECSystemToolBar*    m_systemtoolbar;
-
+    ECLoading           *m_loading;
 private:
     void initData();
     void initConnect();
     void initUI();
 public:
-    static ECAppBar* m_instance;
-public:
-    explicit ECAppBar(QWidget *parent = 0);
-    static ECAppBar* getInstace(QWidget *parent = 0);
-
-    void SetSystemToolSettingMenu(QMenu* menu);
-
-    ECSystemToolBar* GetSystemToolBar();
-
-signals:
-    void refreshed();
-    void maximumed();
-    void minimuned();
-    void normaled();
-    void closed();
-    void fixchanged(bool isfix);
+    explicit ECWaitDialog(QWidget *parent = 0);
 };
 
 }   //namespace ECFramework
 
-#endif // ECAPPBAR_H
+#endif // __ECWAITDIALOG_H__

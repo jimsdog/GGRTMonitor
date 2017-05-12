@@ -24,7 +24,7 @@ GGApp::GGApp(int argc, char** argv)
 
     QApplication::setOrganizationName(ORGANIZATION);
     QApplication::setOrganizationDomain(ORGANIZATIONDOMAIN);
-    QApplication::setApplicationName(APPLICATION);
+    QApplication::setApplicationName(QString::fromLocal8Bit(APPLICATION));
 
     /*LoginView* loginView = new LoginView(0);
     _coordinator = new GGCoordinatorI(loginView, argc, argv);

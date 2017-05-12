@@ -1,4 +1,4 @@
-#ifndef GGCOMMDEFINE_H
+﻿#ifndef GGCOMMDEFINE_H
 #define GGCOMMDEFINE_H
 
 
@@ -7,7 +7,7 @@
 
 #define ORGANIZATION            "Googol"
 #define ORGANIZATIONDOMAIN      "Googol.com"
-#define APPLICATION             "GGMonitor"
+#define APPLICATION             "巡检机器人监控客户端"
 
 
 #endif // GGCOMMDEFINE_H

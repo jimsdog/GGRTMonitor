@@ -26,6 +26,9 @@
 #include "ECMainWindow.h"
 #include "ECSettingMenu.h"
 
+#include "ECLoading.h"
+#include "ECWaitDialog.h"
+
 namespace ECFramework
 {
 
@@ -67,11 +70,17 @@ void ECMainWindow::initUI()
     QString appimgpath = apppath + "/Images/logogoogol.png";
     QString title = QString::fromLocal8Bit("重庆固高");
 
-    QFrame *setting = new QFrame(this);
     //setting->setFixedSize(500,600);
 
-    QFrame *mainpage = new QFrame(this);
+    ECLoading *mainpage = new ECLoading(this);
+    mainpage->Init(apppath + "/LocalRes/ui/loading.html");
     //mainpage->setFixedSize(500,600);
+
+    QFrame *viewpage = new QFrame(this);
+
+    QFrame *reportpage = new QFrame(this);
+
+    QFrame *setting = new QFrame(this);
 
     m_settingmenu->Init(this);
 
@@ -80,7 +89,9 @@ void ECMainWindow::initUI()
     m_mainframe->GetAppBar()->SetSystemToolSettingMenu(m_settingmenu);
 
     m_mainframe->SetLogo(appimgpath, title);
-    m_mainframe->AddNavgation(":/image/ui/icons/dark/appbar.home.png", QString::fromLocal8Bit("主屏"), mainpage);
+    m_mainframe->AddNavgation(":/image/ui/icons/dark/appbar.os.windows.8.png", QString::fromLocal8Bit("主屏"), mainpage);
+    m_mainframe->AddNavgation(":/image/ui/icons/dark/appbar.home.png", QString::fromLocal8Bit("站点"), viewpage);
+    m_mainframe->AddNavgation(":/image/ui/icons/dark/appbar.graph.bar.png", QString::fromLocal8Bit("报表"), reportpage);
     m_mainframe->AddNavgation(":/image/ui/icons/dark/appbar.cog.png", QString::fromLocal8Bit("设置"), setting);
     m_mainframe->ResetNavgationLayout();
 
@@ -105,6 +116,8 @@ void ECMainWindow::initConnect()
     connect(m_mainframe->GetAppBar(), SIGNAL(closed()), this, SLOT(hide()));
     connect(m_mainframe->GetAppBar(), SIGNAL(closed()), this, SLOT(showFlyWidget()));
 
+    connect(m_mainframe->GetAppBar(), SIGNAL(refreshed()), this, SLOT(refreshAction()));
+
     connect(m_mainframe->GetQSystemTrayIcon(), SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(onSystemTrayIconClicked(QSystemTrayIcon::ActivationReason)));
 
@@ -123,8 +136,8 @@ void ECMainWindow::showMainWindow()
         //恢复窗口显示
         show();
         //一下两句缺一均不能有效将窗口置顶
-        setWindowState(Qt::WindowActive);
-        activateWindow();
+        //setWindowState(Qt::WindowActive);
+        //activateWindow();
 
         m_mainframe->GetFlyWidget()->hide();
     }
@@ -143,8 +156,8 @@ void ECMainWindow::onSystemTrayIconClicked(QSystemTrayIcon::ActivationReason rea
                 //恢复窗口显示
                 show();
                 //一下两句缺一均不能有效将窗口置顶
-                setWindowState(Qt::WindowActive);
-                activateWindow();
+                //setWindowState(Qt::WindowActive);
+                //activateWindow();
 
                 m_mainframe->GetFlyWidget()->hide();
             }
@@ -242,6 +255,7 @@ void ECMainWindow::mouseDoubleClickEvent(QMouseEvent *e)
     if(e->y() < m_mainframe->GetTopHeight() && e->x() < m_mainframe->GetTopWidth())
     {
         swithMaxNormal();
+        m_mainframe->GetAppBar()->GetSystemToolBar()->switchMaxMin();
         e->accept();
     }else{
         e->ignore();
@@ -261,6 +275,12 @@ void ECMainWindow::swithMaxNormal()
 void ECMainWindow::settingmenuShowAbout()
 {
 
+}
+
+void ECMainWindow::refreshAction()
+{
+    /*ECWaitDialog *wdlg = new ECWaitDialog(this);
+    wdlg->show();*/
 }
 
 }   //namespace ECFramework

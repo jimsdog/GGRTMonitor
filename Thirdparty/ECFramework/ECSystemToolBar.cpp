@@ -49,6 +49,9 @@ ECSystemToolBar* ECSystemToolBar::getInstace(QWidget *parent)
 
 void ECSystemToolBar::initData()
 {
+    m_refreshButton = new ECToolButton(this);
+    m_refreshButton->setFocusPolicy(Qt::NoFocus);
+
     m_settingButton = new ECToolButton(this);
     m_settingButton->setFocusPolicy(Qt::NoFocus);
 
@@ -85,6 +88,7 @@ void ECSystemToolBar::initUI()
 
     //QString apppath = QDir::currentPath();
 
+    SetRefreshButton(":/image/ui/icons/dark/appbar.refresh.png");
     SetSettingButton(":/image/ui/icons/dark/appbar.control.down.png");
     SetFixButton(":/image/ui/icons/dark/appbar.lock.png",
                  ":/image/ui/icons/dark/appbar.unlock.keyhole.png");
@@ -94,6 +98,7 @@ void ECSystemToolBar::initUI()
     SetCloseButton(":/image/ui/icons/dark/appbar.close.png");
 
     QHBoxLayout* mainlayout = new QHBoxLayout;
+    mainlayout->addWidget(m_refreshButton);
     mainlayout->addWidget(m_settingButton);
     mainlayout->addWidget(m_fixButton);
     mainlayout->addWidget(m_minButton);
@@ -106,6 +111,8 @@ void ECSystemToolBar::initUI()
 
 void ECSystemToolBar::initConnect()
 {
+    connect(m_refreshButton, SIGNAL(clicked()), this, SIGNAL(refreshed()));
+
     connect(m_settingButton, SIGNAL(clicked()), m_settingButton, SLOT(showMenu()));
 
     connect(m_fixButton, SIGNAL(clicked()), this, SLOT(changeFix()));
@@ -125,6 +132,7 @@ bool ECSystemToolBar::GetFixedflag()
 void ECSystemToolBar::SetBarHeight(int height)
 {
     setFixedHeight(height);
+    m_refreshButton->setIconSize(QSize(height, height));
     m_settingButton->setIconSize(QSize(height, height));
     m_fixButton->setIconSize(QSize(height, height));
     m_minButton->setIconSize(QSize(height, height));
@@ -137,6 +145,27 @@ void ECSystemToolBar::SetSettingMenu(QMenu* menu)
     m_settingButton->SetButtonMenu(menu);
 }
 
+
+void ECSystemToolBar::SetRefreshButton(QString imgpath)
+{
+    m_refreshButton->setIcon(QIcon(imgpath));
+    m_refreshButton->setIconSize(QSize(height(), height()));
+}
+
+ECToolButton* ECSystemToolBar::GetRefreshButton()
+{
+    return m_refreshButton;
+}
+
+void ECSystemToolBar::SetRefreshButtonVisible(bool visible)
+{
+    m_refreshButton->setVisible(visible);
+}
+
+bool ECSystemToolBar::IsRefreshButtonVisible()
+{
+    return m_refreshButton->isVisible();
+}
 
 void ECSystemToolBar::SetSettingButton(QString imgpath)
 {

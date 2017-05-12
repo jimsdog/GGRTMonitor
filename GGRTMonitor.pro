@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webenginewidgets
 
 TARGET = GGRTMonitor
 TEMPLATE = app
@@ -60,7 +60,9 @@ SOURCES +=\
     Thirdparty/ECFramework/ECFlyWidget.cpp \
     Thirdparty/ECFramework/ECMainWindow.cpp \
     Views/mainwindow.cpp \
-    Thirdparty/ECFramework/ECSettingMenu.cpp
+    Thirdparty/ECFramework/ECSettingMenu.cpp \
+    Thirdparty/ECFramework/ECLoading.cpp \
+    Thirdparty/ECFramework/ECWaitDialog.cpp
 
 HEADERS  += \
     generated/GGConfig.h \
@@ -111,7 +113,9 @@ HEADERS  += \
     Thirdparty/ECFramework/ECFlyWidget.h \
     Thirdparty/ECFramework/ECMainWindow.h \
     Views/mainwindow.h \
-    Thirdparty/ECFramework/ECSettingMenu.h
+    Thirdparty/ECFramework/ECSettingMenu.h \
+    Thirdparty/ECFramework/ECLoading.h \
+    Thirdparty/ECFramework/ECWaitDialog.h
 
 FORMS    += \
     Views/loginview.ui \
