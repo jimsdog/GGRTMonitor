@@ -24,6 +24,7 @@
 #include <QStatusBar>
 
 #include "ECMainFrame.h"
+#include "ECSpeech.h"
 
 namespace ECFramework
 {
@@ -43,6 +44,8 @@ private:
     bool                    m_leftbuttonpressed;
     bool                    m_lockmoved;
     bool                    m_locked;
+
+    ECSpeech                *m_speech;
 
 protected:
     void resizeEvent(QResizeEvent * event);

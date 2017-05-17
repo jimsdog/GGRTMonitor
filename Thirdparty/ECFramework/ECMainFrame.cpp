@@ -84,7 +84,8 @@ void ECMainFrame::initData()
 
     m_stackWidget = new QStackedWidget(this);
 
-    m_trayicon = new QSystemTrayIcon(QIcon(QString(":/image/ui/robot128X128.ico")), this);
+    //m_trayicon = new QSystemTrayIcon(QIcon(QString(":/image/ui/robot128X128.ico")), this);
+    m_trayicon = new QSystemTrayIcon(QIcon(QString(":/image/ui/yglogo128X128.ico")), this);
     m_flyWidget = new ECFlyWidget(this);
 
     m_preindex = 0;

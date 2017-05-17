@@ -29,6 +29,8 @@
 #include "ECLoading.h"
 #include "ECWaitDialog.h"
 
+#include "ECSpeech.h"
+
 namespace ECFramework
 {
 
@@ -50,6 +52,8 @@ void ECMainWindow::initData()
     m_leftbuttonpressed = false;
     m_lockmoved = false;
     m_locked = false;
+
+    m_speech = new ECSpeech(this);
 }
 
 void ECMainWindow::initUI()
@@ -67,8 +71,10 @@ void ECMainWindow::initUI()
     setStatusBar(m_pstatusbar);
 
     QString apppath = QDir::currentPath();
-    QString appimgpath = apppath + "/Images/logogoogol.png";
-    QString title = QString::fromLocal8Bit("重庆固高");
+    //QString appimgpath = apppath + "/Images/logogoogol.png";
+    //QString title = QString::fromLocal8Bit("重庆固高");
+    QString appimgpath = apppath + "/Images/yglogo.png";
+    QString title = QString::fromLocal8Bit("远哥智慧餐饮系统");
 
     //setting->setFixedSize(500,600);
 
@@ -84,7 +90,8 @@ void ECMainWindow::initUI()
 
     m_settingmenu->Init(this);
 
-    m_mainframe->GetFlyWidget()->Init(":/image/ui/robot128X128.ico", m_settingmenu);
+    //m_mainframe->GetFlyWidget()->Init(":/image/ui/robot128X128.ico", m_settingmenu);
+    m_mainframe->GetFlyWidget()->Init(":/image/ui/yglogo128X128.ico", m_settingmenu);
     m_mainframe->GetQSystemTrayIcon()->setContextMenu(m_settingmenu);
     m_mainframe->GetAppBar()->SetSystemToolSettingMenu(m_settingmenu);
 
@@ -281,6 +288,13 @@ void ECMainWindow::refreshAction()
 {
     /*ECWaitDialog *wdlg = new ECWaitDialog(this);
     wdlg->show();*/
+
+    QString text = QString::fromLocal8Bit("测试语音提示消息！");
+    //m_speech->say(text);
+
+    m_speech->tell(text);
+
+    //m_speech->tell(text, this, SLOT(close()));
 }
 
 }   //namespace ECFramework

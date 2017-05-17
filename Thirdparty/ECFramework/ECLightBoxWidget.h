@@ -13,26 +13,44 @@
 ** Lincence: LGPL V2
 ** QQ: 363280425
 ** Email: jims@jimsdog.com  mr.oldbig@gmail.com  jims.007007@163.com
-** 
+**
 ****************************************************************************/
 
-#ifndef __ECConfig_H__
-#define __ECConfig_H__
+#ifndef __ECLIGHTBOXWIDGET_H__
+#define __ECLIGHTBOXWIDGET_H__
 
+#include <QWidget>
 
 namespace ECFramework
 {
-#define EC_TITLEBAR_HEIGHT 60                       //标题栏高度
-#define EC_STATUSBAR_HEIGHT 30                      //状态栏高度
 
-#define EC_LOGOFRAME_HEIGHT 60                      //logo高度
-#define EC_LOGOFRAME_WIDTH  260                     //logo宽度
+class ECLightBoxWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit ECLightBoxWidget(QWidget *parent = 0, bool _folowToHeadWidget = false);
 
-#define EC_NAVIGATIONBUTTON_WIDTH  60               //导航按键宽度
-#define EC_NAVIGATIONBUTTON_MAXCOUNT  7             //导航按键最大个数
+protected:
+    bool eventFilter(QObject* _object, QEvent* _event);
 
-#define EC_SYSTEMTOOLBAR_HEIGHT 25                  //系统菜单栏高度
+    void paintEvent(QPaintEvent* _event);
+
+    void showEvent(QShowEvent* _event);
+
+private:
+    void updateSelf();
+
+    bool m_isInUpdateSelf;
+
+    QPixmap grabParentWidgetPixmap() const;
+
+    QPixmap m_parentWidgetPixmap;
+
+signals:
+
+public slots:
+};
 
 }   //namespace ECFramework
 
-#endif // __ECConfig_H__
+#endif // __ECLIGHTBOXWIDGET_H__

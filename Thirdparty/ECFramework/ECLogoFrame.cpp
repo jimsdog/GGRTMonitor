@@ -106,7 +106,14 @@ void ECLogoFrame::initUI()
         {
             if(m_adirecton == Horizontal)
             {
-                imglabel->setFixedSize(QSize(m_width/3, m_height));
+                if(m_width > m_height)
+                {
+                    imglabel->setFixedSize(QSize(m_height, m_height));
+                }
+                else
+                {
+                    imglabel->setFixedSize(QSize(m_width/3, m_height));
+                }
             }
             else
             {
@@ -145,7 +152,15 @@ void ECLogoFrame::initUI()
         {
             if(m_adirecton == Horizontal)
             {
-                titlelabel->setFixedSize(QSize(2*m_width/3, m_height));
+                if(m_width > m_height)
+                {
+                    titlelabel->setFixedSize(QSize(m_width - m_height, m_height));
+                }
+                else
+                {
+                    titlelabel->setFixedSize(QSize(2*m_width/3, m_height));
+                }
+
             }
             else
             {
@@ -157,6 +172,7 @@ void ECLogoFrame::initUI()
             titlelabel->setFixedSize(QSize(m_width, m_height));
         }
         titlelabel->setText(m_title);
+        titlelabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
         m_logolayout->addWidget(titlelabel);
     }

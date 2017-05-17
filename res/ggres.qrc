@@ -89,5 +89,6 @@
         <file>ui/icons/dark/appbar.unlock.png</file>
         <file>ui/icons/dark/appbar.warning.circle.png</file>
         <file>ui/icons/dark/appbar.webcam.png</file>
+        <file>ui/yglogo128X128.ico</file>
     </qresource>
 </RCC>

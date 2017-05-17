@@ -33,22 +33,6 @@ SOURCES +=\
     Views/util/jnhelper.cpp \
     Views/util/jninputbox.cpp \
     Util/jnqtlogger.cpp \
-    Thirdparty/JNQTFramework/JUtil.cpp \
-    Thirdparty/JNQTFramework/JToolButton.cpp \
-    Thirdparty/JNQTFramework/JTitleBar.cpp \
-    Thirdparty/JNQTFramework/JCheckAbleButton.cpp \
-    Thirdparty/JNQTFramework/JStateButton.cpp \
-    Thirdparty/JNQTFramework/JFlyWidget.cpp \
-    Thirdparty/JNQTFramework/JBasePushButton.cpp \
-    Thirdparty/JNQTFramework/JBaseDialog.cpp \
-    Thirdparty/JNQTFramework/JTabWidget.cpp \
-    Thirdparty/JNQTFramework/JWigglyWidget.cpp \
-    Thirdparty/JNQTFramework/JShadowLabel.cpp \
-    Thirdparty/JNQTFramework/JNoFocusDelegate.cpp \
-    Thirdparty/JNQTFramework/JNavgationBar.cpp \
-    Thirdparty/JNQTFramework/JMovableWidget.cpp \
-    Thirdparty/JNQTFramework/JCenterWindow.cpp \
-    Thirdparty/JNQTFramework/JMainWindow.cpp \
     Thirdparty/ECFramework/ECLogoFrame.cpp \
     Views/ectestframe.cpp \
     Thirdparty/ECFramework/ECNavigationBar.cpp \
@@ -62,7 +46,9 @@ SOURCES +=\
     Views/mainwindow.cpp \
     Thirdparty/ECFramework/ECSettingMenu.cpp \
     Thirdparty/ECFramework/ECLoading.cpp \
-    Thirdparty/ECFramework/ECWaitDialog.cpp
+    Thirdparty/ECFramework/ECWaitDialog.cpp \
+    Thirdparty/ECFramework/ECSpeech.cpp \
+    Thirdparty/ECFramework/ECLightBoxWidget.cpp
 
 HEADERS  += \
     generated/GGConfig.h \
@@ -85,22 +71,6 @@ HEADERS  += \
     Views/util/jnhelper.h \
     Views/util/jninputbox.h \
     Util/jnqtlogger.h \
-    Thirdparty/JNQTFramework/JUtil.h \
-    Thirdparty/JNQTFramework/JToolButton.h \
-    Thirdparty/JNQTFramework/JTitleBar.h \
-    Thirdparty/JNQTFramework/JCheckAbleButton.h \
-    Thirdparty/JNQTFramework/JStateButton.h \
-    Thirdparty/JNQTFramework/JFlyWidget.h \
-    Thirdparty/JNQTFramework/JBasePushButton.h \
-    Thirdparty/JNQTFramework/JBaseDialog.h \
-    Thirdparty/JNQTFramework/JTabWidget.h \
-    Thirdparty/JNQTFramework/JWigglyWidget.h \
-    Thirdparty/JNQTFramework/JShadowLabel.h \
-    Thirdparty/JNQTFramework/JNoFocusDelegate.h \
-    Thirdparty/JNQTFramework/JNavgationBar.h \
-    Thirdparty/JNQTFramework/JMovableWidget.h \
-    Thirdparty/JNQTFramework/JCenterWindow.h \
-    Thirdparty/JNQTFramework/JMainWindow.h \
     Thirdparty/ECFramework/ECLogoFrame.h \
     Thirdparty/ECFramework/ECConfig.h \
     Views/ectestframe.h \
@@ -115,7 +85,9 @@ HEADERS  += \
     Views/mainwindow.h \
     Thirdparty/ECFramework/ECSettingMenu.h \
     Thirdparty/ECFramework/ECLoading.h \
-    Thirdparty/ECFramework/ECWaitDialog.h
+    Thirdparty/ECFramework/ECWaitDialog.h \
+    Thirdparty/ECFramework/ECSpeech.h \
+    Thirdparty/ECFramework/ECLightBoxWidget.h
 
 FORMS    += \
     Views/loginview.ui \
@@ -158,6 +130,8 @@ win32{
     ICE_x64suffix = $$(ICE_x64suffix)
     QMAKE_LIBDIR  += $$quote($$ICE_HOME/lib$$ICE_x64suffix)
 
+    QMAKE_CFLAGS -= -Zc:strictStrings
+    QMAKE_CXXFLAGS -= -Zc:strictStrings
 }
 
 RESOURCES += \
