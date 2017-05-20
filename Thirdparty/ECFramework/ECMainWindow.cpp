@@ -38,6 +38,8 @@ ECMainWindow::ECMainWindow(QWidget *parent) : QMainWindow(parent)
 {
     setObjectName(QString("ECMainWindow"));
 
+    qDebug()<<"-------------------- ECMainWindow --------- ";
+
     initData();
     initUI();
     initConnect();
@@ -78,8 +80,11 @@ void ECMainWindow::initUI()
 
     //setting->setFixedSize(500,600);
 
-    ECLoading *mainpage = new ECLoading(this);
-    mainpage->Init(apppath + "/LocalRes/ui/loading.html");
+    //ECLoading *mainpage = new ECLoading(this);
+    m_loading = new ECLoading(this);
+    m_loading->installEventFilter(this);
+    m_loading->Init(apppath + "/LocalRes/ui/login.html");
+    //mainpage->Init("https://www.baidu.com/");
     //mainpage->setFixedSize(500,600);
 
     QFrame *viewpage = new QFrame(this);
@@ -96,7 +101,7 @@ void ECMainWindow::initUI()
     m_mainframe->GetAppBar()->SetSystemToolSettingMenu(m_settingmenu);
 
     m_mainframe->SetLogo(appimgpath, title);
-    m_mainframe->AddNavgation(":/image/ui/icons/dark/appbar.os.windows.8.png", QString::fromLocal8Bit("主屏"), mainpage);
+    m_mainframe->AddNavgation(":/image/ui/icons/dark/appbar.os.windows.8.png", QString::fromLocal8Bit("主屏"), m_loading);
     m_mainframe->AddNavgation(":/image/ui/icons/dark/appbar.home.png", QString::fromLocal8Bit("站点"), viewpage);
     m_mainframe->AddNavgation(":/image/ui/icons/dark/appbar.graph.bar.png", QString::fromLocal8Bit("报表"), reportpage);
     m_mainframe->AddNavgation(":/image/ui/icons/dark/appbar.cog.png", QString::fromLocal8Bit("设置"), setting);
@@ -109,6 +114,15 @@ void ECMainWindow::initUI()
     mainvlayout->setContentsMargins(0, 0, 0, 0);
     mainvlayout->setSpacing(0);
     setLayout(mainvlayout);
+}
+
+bool ECMainWindow::eventFilter(QObject *obj, QEvent *event)
+{
+    if(obj == m_loading)
+    {
+        qDebug()<<"eventFilter --------- " + event->type();
+    }
+    return QMainWindow::eventFilter(obj, event);
 }
 
 void ECMainWindow::initConnect()
@@ -208,6 +222,8 @@ void ECMainWindow::closeEvent(QCloseEvent *event)
 
 void ECMainWindow::mouseReleaseEvent(QMouseEvent *e)
 {
+    //qDebug()<<QString("mouseReleaseEvent ---------  ");
+
     m_leftbuttonpressed = false;
     m_mainframe->GetAppBar()->GetSystemToolBar()->clearChecked();
     e->accept();
@@ -215,9 +231,12 @@ void ECMainWindow::mouseReleaseEvent(QMouseEvent *e)
 
 void ECMainWindow::mousePressEvent(QMouseEvent *e)
 {
+    //qDebug()<<QString("mousePressEvent ---------  ");
+
     if(e->button() & Qt::LeftButton)
     {
-        if(e->y() < m_mainframe->GetTopHeight() && e->x() < m_mainframe->GetTopWidth())
+        if(e->y() < height() && e->x() < m_mainframe->GetTopWidth())
+        //if(e->y() < m_mainframe->GetTopHeight() && e->x() < m_mainframe->GetTopWidth())
         {
             m_dragPosition = e->globalPos() - frameGeometry().topLeft();
             m_leftbuttonpressed = true;
@@ -233,13 +252,16 @@ void ECMainWindow::mousePressEvent(QMouseEvent *e)
 
 void ECMainWindow::mouseMoveEvent(QMouseEvent *e)
 {
+    //qDebug()<<QString("mouseMoveEvent ---------  ");
+
     if(isMaximized())
     {
         e->ignore();
     }
     else
     {
-        if(e->y() < m_mainframe->GetTopHeight() && e->x() < m_mainframe->GetTopWidth())
+        if(e->y() < height() && e->x() < m_mainframe->GetTopWidth())
+        //if(e->y() < m_mainframe->GetTopHeight() && e->x() < m_mainframe->GetTopWidth())
         {
             if(m_leftbuttonpressed)
             {
@@ -259,14 +281,18 @@ void ECMainWindow::mouseMoveEvent(QMouseEvent *e)
 
 void ECMainWindow::mouseDoubleClickEvent(QMouseEvent *e)
 {
-    if(e->y() < m_mainframe->GetTopHeight() && e->x() < m_mainframe->GetTopWidth())
+    //qDebug()<<QString("mouseDoubleClickEvent ---------  ");
+    swithMaxNormal();
+    m_mainframe->GetAppBar()->GetSystemToolBar()->switchMaxMin();
+    e->accept();
+    /*if(e->y() < m_mainframe->GetTopHeight() && e->x() < m_mainframe->GetTopWidth())
     {
         swithMaxNormal();
         m_mainframe->GetAppBar()->GetSystemToolBar()->switchMaxMin();
         e->accept();
     }else{
         e->ignore();
-    }
+    }*/
 }
 
 void ECMainWindow::swithMaxNormal()

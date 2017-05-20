@@ -19,6 +19,10 @@
 #ifndef __ECLOADING_H__
 #define __ECLOADING_H__
 
+#include <QEvent>
+#include <QChildEvent>
+#include <QPointer>
+#include <QOpenGLWidget>
 #include <QWebEngineView>
 
 namespace ECFramework
@@ -29,12 +33,23 @@ class ECLoading : public QWebEngineView
     Q_OBJECT
 private:
     QString             m_htmlpath;
+
+    QPointer<QOpenGLWidget> child_;
+
+    QWidget             *m_mainwindow;
 private:
     void initData();
     void initConnect();
     void initUI();
 protected:
     void contextMenuEvent(QContextMenuEvent *event);
+
+
+    bool eventFilter(QObject *obj, QEvent *ev);
+
+    bool event(QEvent * ev);
+
+
 public:
     explicit ECLoading(QWidget *parent = 0);
 

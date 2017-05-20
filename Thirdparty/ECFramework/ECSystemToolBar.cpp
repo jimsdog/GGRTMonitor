@@ -50,21 +50,27 @@ ECSystemToolBar* ECSystemToolBar::getInstace(QWidget *parent)
 void ECSystemToolBar::initData()
 {
     m_refreshButton = new ECToolButton(this);
+    m_refreshButton->setToolTip(QString::fromLocal8Bit("刷新"));
     m_refreshButton->setFocusPolicy(Qt::NoFocus);
 
     m_settingButton = new ECToolButton(this);
+    m_settingButton->setToolTip(QString::fromLocal8Bit("系统"));
     m_settingButton->setFocusPolicy(Qt::NoFocus);
 
     m_fixButton = new ECToolButton(this);
+    m_fixButton->setToolTip(QString::fromLocal8Bit("锁定"));
     m_fixButton->setFocusPolicy(Qt::NoFocus);
 
     m_minButton = new ECToolButton(this);
+    m_minButton->setToolTip(QString::fromLocal8Bit("最小化"));
     m_minButton->setFocusPolicy(Qt::NoFocus);
 
     m_maxButton = new ECToolButton(this);
+    m_maxButton->setToolTip(QString::fromLocal8Bit("最大化"));
     m_maxButton->setFocusPolicy(Qt::NoFocus);
 
     m_closeButton = new ECToolButton(this);
+    m_closeButton->setToolTip(QString::fromLocal8Bit("最小化到任务栏"));
     m_closeButton->setFocusPolicy(Qt::NoFocus);
 
     m_normal_max_flag = true;
@@ -290,11 +296,13 @@ void ECSystemToolBar::switchMaxMin()
     {
         m_maxButton->setIcon(QIcon(m_maxbtn_mimgpath));
         m_maxButton->setIconSize(QSize(height(), height()));
+        m_maxButton->setToolTip(QString::fromLocal8Bit("向下还原"));
         m_normal_max_flag = false;
     }
     else{
         m_maxButton->setIcon(QIcon(m_maxbtn_nimgpath));
         m_maxButton->setIconSize(QSize(height(), height()));
+        m_maxButton->setToolTip(QString::fromLocal8Bit("最大化"));
         m_normal_max_flag = true;
     }
 }
@@ -314,10 +322,12 @@ void ECSystemToolBar::changeFix()
     {
         m_fixButton->setIcon(QIcon(m_fixbtn_fimgpath));
         m_fixButton->setIconSize(QSize(height(), height()));
+        m_fixButton->setToolTip(QString::fromLocal8Bit("解锁"));
     }
     else{
         m_fixButton->setIcon(QIcon(m_fixbtn_ufimgpath));
         m_fixButton->setIconSize(QSize(height(), height()));
+        m_fixButton->setToolTip(QString::fromLocal8Bit("锁定"));
     }
     m_fixflag = !m_fixflag;
 

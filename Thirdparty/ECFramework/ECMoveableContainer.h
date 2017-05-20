@@ -16,40 +16,27 @@
 **
 ****************************************************************************/
 
-#ifndef __ECMAINWINDOW_H__
-#define __ECMAINWINDOW_H__
+#ifndef __ECMOVEABLECONTAINER_H__
+#define __ECMOVEABLECONTAINER_H__
 
-#include <QMainWindow>
-#include <QCloseEvent>
-#include <QStatusBar>
-
-#include "ECMainFrame.h"
-#include "ECSpeech.h"
-
-#include "ECLoading.h"
+#include <QWidget>
+#include <QMouseEvent>
+#include <QResizeEvent>
+#include <QKeyEvent>
+#include <QWebEngineView>
 
 namespace ECFramework
 {
 
-class ECSettingMenu;
-
-class ECMainWindow : public QMainWindow
+class ECMoveableContainer : public QWidget
 {
     Q_OBJECT
 private:
-    ECMainFrame             *m_mainframe;
-    QStatusBar              *m_pstatusbar;
-
-    ECSettingMenu           *m_settingmenu;
-
     QPoint                  m_dragPosition;
     bool                    m_leftbuttonpressed;
-    bool                    m_lockmoved;
-    bool                    m_locked;
 
-    ECSpeech                *m_speech;
-
-    ECLoading               *m_loading;
+    QWidget                 *m_maskwidget;
+    QWebEngineView          *m_webengineview;
 
 protected:
     void resizeEvent(QResizeEvent * event);
@@ -58,33 +45,19 @@ protected:
     void mouseReleaseEvent(QMouseEvent *e);
     void mouseDoubleClickEvent(QMouseEvent *e);
     void keyPressEvent(QKeyEvent *e);
-    void closeEvent(QCloseEvent * event);
 
     bool eventFilter(QObject *obj, QEvent *event);
 
-private:
-    void initData();
-    void initConnect();
-    void initUI();
-public:
-    explicit ECMainWindow(QWidget *parent = 0);
+    bool event(QEvent *event);
 
-    QStatusBar* GetStatusBar();
+public:
+    explicit ECMoveableContainer(QWidget *parent = 0);
 
 signals:
-    void Hidden();
 
 public slots:
-    void refreshAction();
-    void swithMaxNormal();
-    void showFlyWidget();
-    void onSystemTrayIconClicked(QSystemTrayIcon::ActivationReason reason);
-    void showMainWindow();
-
-    void settingmenuShowAbout();
-
 };
 
 }   //namespace ECFramework
 
-#endif // __ECMAINWINDOW_H__
+#endif // __ECMOVEABLECONTAINER_H__

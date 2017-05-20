@@ -1,4 +1,4 @@
-#include "jnqtlogger.h"
+﻿#include "jnqtlogger.h"
 
 
 
@@ -16,6 +16,11 @@ JNQTLogger::JNQTLogger()
 
 void JNQTLogger::myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
+    if(type != QtDebugMsg)
+    {
+        return;
+    }
+
     Mtx.lock();
     try{
         QString typeMsg;

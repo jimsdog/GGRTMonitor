@@ -48,7 +48,8 @@ SOURCES +=\
     Thirdparty/ECFramework/ECLoading.cpp \
     Thirdparty/ECFramework/ECWaitDialog.cpp \
     Thirdparty/ECFramework/ECSpeech.cpp \
-    Thirdparty/ECFramework/ECLightBoxWidget.cpp
+    Thirdparty/ECFramework/ECLightBoxWidget.cpp \
+    Thirdparty/ECFramework/ECMoveableContainer.cpp
 
 HEADERS  += \
     generated/GGConfig.h \
@@ -87,7 +88,8 @@ HEADERS  += \
     Thirdparty/ECFramework/ECLoading.h \
     Thirdparty/ECFramework/ECWaitDialog.h \
     Thirdparty/ECFramework/ECSpeech.h \
-    Thirdparty/ECFramework/ECLightBoxWidget.h
+    Thirdparty/ECFramework/ECLightBoxWidget.h \
+    Thirdparty/ECFramework/ECMoveableContainer.h
 
 FORMS    += \
     Views/loginview.ui \
@@ -98,6 +100,7 @@ FORMS    += \
 ##--------------------------Added config
 
 CONFIG += release
+#CONFIG += debug
 
 ICE_HOME = $$(ICE_HOME)
 

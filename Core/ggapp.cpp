@@ -13,6 +13,8 @@
 
 #include "mainwindow.h"
 
+#include "ECMoveableContainer.h"
+
 
 
 GGApp::GGApp(int argc, char** argv)
@@ -54,6 +56,11 @@ GGApp::GGApp(int argc, char** argv)
 
     MainWindow *mainwindow = new MainWindow();
     mainwindow->show();
+
+    /*ECMoveableContainer *mc = new ECMoveableContainer();
+    //mc->setStyleSheet("background-color: rgba(0, 255, 0, 120);");
+    mc->setFixedSize(600,400);
+    mc->show();*/
 
 }
 
